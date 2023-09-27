@@ -16,4 +16,4 @@ Items of Interest:
 
 Proposed Layout:
 ----------------
-![mobile site mockup for project](proposalV1.jpg "Mockup")
+![mobile site mockup for project](proposal.jpg "Mockup")
