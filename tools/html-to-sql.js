@@ -12,19 +12,35 @@ const domRoot = parse(src)
 
 const glossaryDiv = domRoot.querySelector('.index')
 
-//words into array, loop through the array odds being words, evens being definitions
-const words = glossaryDiv.querySelectorAll('td')
-//const words = glossaryDiv.querySelectorAll('td')[0].text
+//Remove spans
+let removeMe = glossaryDiv.querySelectorAll('td span')
+removeMe.forEach(span => {
+  span.remove()
+});
 
-for(let i = 0; i < words.length; i+= 1){
+//words and definitions into array, loop through the array odds being words, evens being definitions
+let wordsAndDefs = glossaryDiv.querySelectorAll('td')
+
+let words = []
+let defs = []
+
+//Loop through wordsAndDefs array, printing words to the words array and definitions to the defs array
+for(let i = 0; i < wordsAndDefs.length; i++){
+  if(wordsAndDefs[i].text == "" || wordsAndDefs[i].text == " "){
+    wordsAndDefs.splice(i, 1)
+  }
   if(i % 2 == 0){
-    console.log("Word: " + words[i].text.replace('.', ''))
+    words.push(wordsAndDefs[i].text.replace('.', ""))
   }
   if(i % 2 != 0){
-    console.log("Definition: " + words[i].text)
+    defs.push(wordsAndDefs[i].text)
   }
 }
 
+for(let j = 0; j < words.length; j++){
+  console.log(words[j] + ": ")
+  console.log(defs[j])
+}
 
 
 const sqlHeader = 
@@ -38,29 +54,8 @@ CREATE TABLE words (
 
 INSERT INTO words (word, definition) VALUES
 `
-// console.log(srcPath)
-// console.log(dstPath)
-
-//returns the contents of the glossary
-//console.log(glossaryDiv.innerHTML)
-
-//returns 736 meaning there should be 368 words
-//console.log(words)
-
-// // Utility functions ///////////////////////////////////////
-// const extractWord = function () {
-//   const word = 
-//   return word
-// }
-
-// const extractDef = function () {
-//   const def = "" /*querySelectorAll() passing in tds?*/
-//   return def
-// }
-
-
-
 
 // // Output the data as SQL.
 // const fd = openSync(dstPath, 'w')
 // writeFileSync(fd, sqlHeader)
+//closeSync(fd)
