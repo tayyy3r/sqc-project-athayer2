@@ -1,8 +1,20 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Glossary</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary</title>
+  <link rel="stylesheet" href="site.css">
 </head>
-<body>
+
+<nav id="topNav">
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/glossary">Glossary</a>
+  <button id = 'button'>Toggle Light/Dark Mode</button>
+</nav>
+
+<body id = "body">
     <h1>Glossary</h1>
     <ul>
         <% glossary.forEach(item => { %>
@@ -10,4 +22,7 @@
         <% }); %>
     </ul>
 </body>
+
+<script src="darkMode.js"></script>
+
 </html>
