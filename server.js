@@ -26,10 +26,15 @@ async function getAllWordsAndDefinitions() {
     throw error;
   }
 }
+// Web Server Setup ///////////////////////////////////////
+const app = express();
 
-// Web server setup ////////////////////////////////////////
-const app = express()
-app.use(express.static('public'))
+  app.use(express.static('public'))
+     .use(express.json())
+     .use(express.urlencoded({ extended: true }))
+
+     .set('views', 'views')
+     .set('view engine', 'ejs')
 
 // Routes //////////////////////////////////////////////////
 .get('/', function (req, res) {
@@ -38,6 +43,22 @@ app.use(express.static('public'))
 .get('/about', function (req, res) {
   res.render('about')
 })
+
+.get('/glossary', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT word, definition FROM words');
+    client.release();
+
+    const glossary = result.rows;
+
+    // Render the 'glossary.ejs' template and pass the glossary data to it
+    res.render('glossary.ejs', { glossary });
+  } catch (error) {
+    console.error('Error retrieving glossary:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 // Ready for browsers to connect ///////////////////////////
 const displayPort = function () {
