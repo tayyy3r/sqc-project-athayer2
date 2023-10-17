@@ -14,11 +14,30 @@ const pool = new Pool({
 })
 
 // Query functions /////////////////////////////////////////
-
+// Function to get all words and definitions from the database
+async function getAllWordsAndDefinitions() {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT word, definition FROM words');
+    client.release();
+    return result.rows;
+  } catch (error) {
+    console.error('Error retrieving words and definitions:', error);
+    throw error;
+  }
+}
 
 // Web server setup ////////////////////////////////////////
 const app = express()
 app.use(express.static('public'))
+
+// Routes //////////////////////////////////////////////////
+.get('/', function (req, res) {
+  res.render('index')
+})
+.get('/about', function (req, res) {
+  res.render('about')
+})
 
 // Ready for browsers to connect ///////////////////////////
 const displayPort = function () {
