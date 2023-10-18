@@ -17,9 +17,25 @@
 <body id="body">
   <h2>About:</h2>
 
-  <p>This site was created as a project for my Software Quality Control class.</p>
+  <p>This site was created as a project for my Software Quality Control class. It utilizes various technologies to present to the end user a simple website which contains data parsed from a book in the form of an HTML file.</p> 
+  
+  <p>The contents of the glossary (words and their definitions) are contained within a table element in the HTML document. Within the table are table row elements, each containing two table data elements. The first td element contains the word itself, the second contains the word's definition. The structure can be visualized as such:</p>
 
-  <p>It utilizes various technologies to present to the end user a simple website which contains data parsed from a book in the form of an HTML file.</p>
+  <div id="borderMe">
+  <p>&lt;table&gt;</p>
+
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;</p>
+
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;</p>
+
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;</p>
+
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;</p>
+
+  <p>&lt;/table&gt;</p>
+  </div>
+
+  <p>The structure allows for easy manipulation of the data contained within the table. The words and their definitions are added into an array in the order in which they appear in the HTML document. Words and their definitions are then sorted into arrays containing either the words or their definitions. This is accomplished by iterating through the array and determining if the element is odd (a word) or even (a definition). </p>
 
   <p>Technologies Used:</p>
 
